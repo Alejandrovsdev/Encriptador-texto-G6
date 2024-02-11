@@ -7,17 +7,11 @@
 }
 
 body {
+    display: flex;
+    justify-content: space-between;
     background-color: #E5E5E5;
     font-family: 'Inter', sans-serif;
     padding: 20px;
-}
-
-.leftContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 400px;
 }
 
 .rightContainer {
@@ -30,6 +24,8 @@ body {
     border-radius: 32px;
     height: 944px;
     width: 400px;
+    font-size: 24px;
+    color: #495057;
 }
 
 .txtContainer {
@@ -76,12 +72,11 @@ body {
 }
 
 .txtInput {
-    width: 578px;
-    height: 48px;
     font-size: 32px;
     background: none;
     outline: none;
     border: none;
+    resize: none;
     color: #0A3871;
 }
 
@@ -89,15 +84,13 @@ body {
     color: #0A3871;
 }
 
-.txtUser {
+.leftContainer {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-around;
     align-items: flex-start;
-    height: 944px;
-    gap: 400px;
 }
 
 .btns-container {
