@@ -1,41 +1,47 @@
-/* 
-funcion encriptar:
--capturar el texto ingresado por el usuario
--pasarlo a minusculas con toLowerCase y usar el metodo replace con expresion regular para convertir las vocales en el texto encriptado.
--mostrar esconder los estilos definidos en el contenedor donde va el texto encriptado y mostrar el texto encriptado junto con un boton para copiar.
+/* Todo:
+- Si el input esta vacio, los botones deben arrojar un modal con un mensaje para introducir texto
+-Si ya se encripto el mensaje y luego lo desencriptamos, al apretar de vuelta encriptar debe volver a encriptarse.
+-Desencriptar no debe sacar el boton copiar.
+-el boton copiar debe copiar el texto generado.
+-Al volver a pulsar encriptar para generar otro texto una vez encriptado el mensaje anterior, se debe reemplazar el texto generado.
+
+
 */
 
+const ilegalInput = (str) => {
+    const regex = /[^a-z 0-9]/g;
+    return regex.test(str);
+};
 
 const btnEncriptar = document.getElementById('btn-encriptar');
 const btnDesencriptar = document.getElementById('btn-desencriptar');
+const texto = document.getElementById('txtInput');
 
 btnEncriptar.addEventListener('click', function () {
-
     let texto = document.getElementById('txtInput').value;
     texto.toLowerCase();
 
     texto = texto
-        .replace(/a/g, 'ai')
-        .replace(/e/g, 'enter')
-        .replace(/i/g, 'imes')
-        .replace(/o/g, 'ober')
-        .replace(/u/g, 'ufat');
+        .replace(/a/gi, 'ai')
+        .replace(/e/gi, 'enter')
+        .replace(/i/gi, 'imes')
+        .replace(/o/gi, 'ober')
+        .replace(/u/gi, 'ufat');
 
     const btnCopiar = document.getElementById('btn-copiar');
     const rightContainer = document.querySelector('.rightContainer');
-    rightContainer.innerHTML = '';
 
-    // Crea un nuevo elemento de párrafo
-    const nuevoParrafo = document.createElement('p');
-    // Crea un nodo de texto con el texto encriptado y lo asigna al nuevo párrafo
-    nuevoParrafo.appendChild(document.createTextNode(texto));
-    // Agrega el nuevo párrafo al contenedor de texto
-    rightContainer.appendChild(nuevoParrafo);
+    if (texto.length != 0) {
+        rightContainer.innerHTML = '';
+        rightContainer.innerHTML = texto;
 
+        btnCopiar.removeAttribute('hidden');
+    } else {
+        alert('Debe ingresar un texto');
+    }
 });
 
 btnDesencriptar.addEventListener('click', function () {
-
     let texto = document.getElementById('txtInput').value;
     texto.toLowerCase();
 
@@ -46,15 +52,15 @@ btnDesencriptar.addEventListener('click', function () {
         .replace(/ober/g, 'o')
         .replace(/ufat/g, 'u');
 
-
+    const btnCopiar = document.getElementById('btn-copiar');
     const rightContainer = document.querySelector('.rightContainer');
-    rightContainer.innerHTML = '';
 
-    // Crea un nuevo elemento de párrafo
-    const nuevoParrafo = document.createElement('p');
-    // Crea un nodo de texto con el texto encriptado y lo asigna al nuevo párrafo
-    nuevoParrafo.appendChild(document.createTextNode(texto));
-    // Agrega el nuevo párrafo al contenedor de texto
-    rightContainer.appendChild(nuevoParrafo);
+    if (texto.length != 0) {
+        rightContainer.innerHTML = '';
+        rightContainer.innerHTML = texto;
 
+        btnCopiar.removeAttribute('hidden');
+    } else {
+        alert('Debe ingresar un texto');
+    }
 });
